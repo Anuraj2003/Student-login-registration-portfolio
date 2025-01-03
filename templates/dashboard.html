@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<div class="container-fluid" style="background-image: url('{% static 'Blue and White.jpg' %}'); background-size: cover; background-position: center; padding: 50px 0;">
+    <div class="content-container bg-dark text-white p-4 rounded shadow-lg">
+        <h2>Welcome, {{ user.username }}</h2>
+
+        <h3>Your Profile</h3>
+        <ul class="list-unstyled">
+            <li><strong>Full Name:</strong> {{ user.studentprofile.full_name }}</li>
+            <li><strong>Course:</strong> {{ user.studentprofile.course }}</li>
+            <li><strong>Year of Study:</strong> {{ user.studentprofile.year_of_study }}</li>
+            <li><strong>Institution:</strong> {{ user.studentprofile.institution_name }}</li>
+            <li><strong>Bio:</strong> {{ user.studentprofile.bio }}</li>
+        </ul>
+
+        <a href="{% url 'update_profile' %}" class="btn btn-primary">Update Profile</a>
+
+        <h3>Your Achievements</h3>
+        <p>{{ user.studentprofile.achievements }}</p>
+
+        <h3>Links</h3>
+        <p><a href="https://www.linkedin.com/in/anuraj-n-n-83325b293?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-primary">LinkedIn Profile</a></p>
+
+        <h3>Announcements</h3>
+        <ul>
+            <li>Exam schedule released for the semester.</li>
+            <li>Next workshop: "Introduction to Django" on 15th March.</li>
+            <li>Submit your project by the end of this month.</li>
+        </ul>
+
+        <h3>Resources</h3>
+        <ul>
+            <li><a href="/static/docs/cariculam.pdf" class="btn btn-secondary btn-sm" download>Download Curriculum PDF</a></li>
+            <li><a href="/static/docs/assignment1.pdf" class="btn btn-secondary btn-sm" download>Download Assignment 1</a></li>
+            <li><a href="/static/docs/reference_materials.pdf" class="btn btn-secondary btn-sm" download>Download Reference Materials</a></li>
+        </ul>
+
+        <h3>Upcoming Events</h3>
+        <ul>
+            <li>Mid-term Exams: March 20 - March 25</li>
+            <li>Project Submission Deadline: April 10</li>
+            <li>End-of-Semester Party: May 5</li>
+        </ul>
+
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-block">Logout</button>
+        </form>
+    </div>
+</div>
+
+<!-- Link to Bootstrap JS (Optional, if you need any JS components) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}
+
